@@ -67,7 +67,7 @@ menuconfig DEVEL
 
 	config KERNEL_GIT_CLONE_URI
 		string "Enter git repository to clone" if DEVEL
-		default ""
+		default "https://github.com/SolidRun/linux-stable.git"
 		help
 		  Enter the full git repository path i.e.:
 		  git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
@@ -85,7 +85,7 @@ menuconfig DEVEL
 	config KERNEL_GIT_BRANCH
 		string "Enter git branch to clone" if DEVEL
 		depends on (KERNEL_GIT_CLONE_URI != "")
-		default ""
+		default "linux-4.4.y-clearfog"
 		help
 		  Enter the branch name to checkout after cloning the git repository.
 		  In this instance, the --branch option of git clone will be used.
