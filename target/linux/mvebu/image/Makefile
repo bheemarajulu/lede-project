@@ -51,9 +51,7 @@ endef
 
 define Build/rootfsdata-img
 	rm -f $@.rootfsdata
-	# create sparse file to save space in the build directory
-	dd if=/dev/zero of=$@.rootfsdata bs=512 count=0 seek=6401024
-	mkfs.ext4 -L rootfs_data $@.rootfsdata
+	make_ext4fs -l $$((6401024*512)) -L rootfs_data $@.rootfsdata
 endef
 
 define Build/sdcard-img
