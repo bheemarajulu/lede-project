@@ -57,7 +57,7 @@ endef
 define Build/sdcard-img
 	rm -f $@ $@.gz
 	./gen_mvebu_sdcard_img.sh 7744512 $@ \
-		"$(BIN_DIR)/uboot-mvebu-clearfog/openwrt-mvebu-clearfog-u-boot-spl.kwb" \
+		"$(BIN_DIR)/u-boot.mmc" \
 		c 32768 $@.boot \
 		83 1308672 $(IMAGE_ROOTFS) \
 		83 6401024 $@.rootfsdata
@@ -187,7 +187,7 @@ define Device/armada-388-clearfog
   KERNEL_INSTALL := 1
   KERNEL := dtb | kernel-bin
   DEVICE_TITLE := SolidRun ClearFog
-  DEVICE_PACKAGES := uboot-mvebu-clearfog kmod-fs-ext4
+  DEVICE_PACKAGES := uboot-solidrun-clearfog kmod-fs-ext4
   IMAGES := bundle.tar.gz sdcard.img
   IMAGE/bundle.tar.gz := clearfog-bundle
   IMAGE/sdcard.img := boot-scr | boot-img | rootfsdata-img | sdcard-img
