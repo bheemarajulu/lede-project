@@ -56,7 +56,7 @@ endef
 
 define Build/sdcard-img
 	rm -f $@ $@.gz
-	./gen_mvebu_sdcard_img.sh 7744512 $@ \
+	bash ./gen_mvebu_sdcard_img.sh 7744512 $@ \
 		"$(BIN_DIR)/u-boot.mmc" \
 		c 32768 $@.boot \
 		83 1308672 $(IMAGE_ROOTFS) \
