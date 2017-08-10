@@ -1,4 +1,4 @@
-From d6eaeb8b1e20517468d01096220674ce96b8b759 Mon Sep 17 00:00:00 2001
+From a49b7cceaf955b9213f95a8d4dab5ee3fc7e95b7 Mon Sep 17 00:00:00 2001
 From: Jon Nettleton <jon@solid-run.com>
 Date: Wed, 9 Aug 2017 22:55:11 +0200
 Subject: [PATCH] sfp: add hpower_level support
@@ -8,14 +8,14 @@ a power-level greater than 1.
 
 Signed-off-by: Jon Nettleton <jon@solid-run.com>
 ---
- arch/arm/boot/dts/armada-388-clearfog.dts  |  1 +
- drivers/net/phy/sfp.c                      | 71 +++++++++++++++++++++++++++---
- 2 files changed, 67 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/armada-388-clearfog.dtsi |  1 +
+ drivers/net/phy/sfp.c                      | 72 +++++++++++++++++++++++++++---
+ 2 files changed, 68 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/armada-388-clearfog.dts b/arch/arm/boot/dts/armada-388-clearfog.dts
+diff --git a/arch/arm/boot/dts/armada-388-clearfog.dtsi b/arch/arm/boot/dts/armada-388-clearfog.dtsi
 index ffa3957bcd98..89dc9542f120 100644
---- a/arch/arm/boot/dts/armada-388-clearfog.dts
-+++ b/arch/arm/boot/dts/armada-388-clearfog.dts
+--- a/arch/arm/boot/dts/armada-388-clearfog.dtsi
++++ b/arch/arm/boot/dts/armada-388-clearfog.dtsi
 @@ -126,6 +126,7 @@
  		sfp,ethernet = <&eth2>;
  		tx-disable-gpio = <&expander0 14 GPIO_ACTIVE_HIGH>;
@@ -25,7 +25,7 @@ index ffa3957bcd98..89dc9542f120 100644
  };
  
 diff --git a/drivers/net/phy/sfp.c b/drivers/net/phy/sfp.c
-index b2a1e55c9bb9..557a0f446762 100644
+index b2a1e55c9bb9..cf76c1ccce09 100644
 --- a/drivers/net/phy/sfp.c
 +++ b/drivers/net/phy/sfp.c
 @@ -43,6 +43,7 @@ enum {
@@ -177,13 +177,14 @@ index b2a1e55c9bb9..557a0f446762 100644
  	case SFP_MOD_PRESENT:
  	case SFP_MOD_ERROR:
  		if (event == SFP_E_REMOVE) {
-@@ -1244,6 +1302,9 @@ static int sfp_probe(struct platform_device *pdev)
+@@ -1244,6 +1302,10 @@ static int sfp_probe(struct platform_device *pdev)
  			return -EPROBE_DEFER;
  		}
  
 +		if(of_property_read_u8(node, "power-level", &sfp->hpower_level))
 +			sfp->hpower_level = 1;
 +
++		sfp->hpower_level = 3;
  		phylink_disable(sfp->phylink);
  		phylink_register_module(sfp->phylink, sfp, &sfp_module_ops);
  	}
