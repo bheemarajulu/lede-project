@@ -8,14 +8,14 @@ a power-level greater than 1.
 
 Signed-off-by: Jon Nettleton <jon@solid-run.com>
 ---
- arch/arm/boot/dts/armada-388-clearfog.dtsi |  1 +
+ arch/arm/boot/dts/armada-388-clearfog.dts  |  1 +
  drivers/net/phy/sfp.c                      | 71 +++++++++++++++++++++++++++---
  2 files changed, 67 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/armada-388-clearfog.dtsi b/arch/arm/boot/dts/armada-388-clearfog.dtsi
+diff --git a/arch/arm/boot/dts/armada-388-clearfog.dts b/arch/arm/boot/dts/armada-388-clearfog.dts
 index ffa3957bcd98..89dc9542f120 100644
---- a/arch/arm/boot/dts/armada-388-clearfog.dtsi
-+++ b/arch/arm/boot/dts/armada-388-clearfog.dtsi
+--- a/arch/arm/boot/dts/armada-388-clearfog.dts
++++ b/arch/arm/boot/dts/armada-388-clearfog.dts
 @@ -126,6 +126,7 @@
  		sfp,ethernet = <&eth2>;
  		tx-disable-gpio = <&expander0 14 GPIO_ACTIVE_HIGH>;
